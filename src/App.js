@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { WindowSize } from 'react-fns'
+import FitSVGTextRect from './FitSVGTextRect'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <WindowSize
+          render={({ width, height }) => (
+            <FitSVGTextRect
+              width={width}
+              height={height}
+              text="Always keep smile"
+            />
+          )}
+        />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
