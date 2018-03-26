@@ -13,9 +13,23 @@ export default class FitSVGText extends React.Component {
 
   componentDidMount() {
     this.fitText(this.props)
+
+    // todo: can text height change per line?
   }
 
   componentWillReceiveProps(nextProps) {
+    // text change? do everything
+    // - render a single line of text
+    // - get the compositions
+    // - get the bounding box of the text
+    // - get the width of each of the words
+    // - get the height of the text
+    // - continue below
+
+    // only width or height change?
+    // - get the maximum zoom for each of the compositions
+    // - setState for the zoom & text
+
     this.fitText(nextProps)
   }
 
@@ -44,7 +58,12 @@ export default class FitSVGText extends React.Component {
     const containerHeight = height
     const containerWidth = width
 
-    const textHeight = this.textElement.getBBox().height
+    // based on the currently rendered element (but without the transform: scale)
+    // and including spaces between the words (when you split over multiple lines spaces become less)
+    // although with this.textElement.getSubStringLength it's all good
+    const textHeight =
+      this.textElement.getBBox().height /
+      (this.textElement.children.length || 1)
 
     compositions.forEach(lines => {
       lines.forEach(words => {
@@ -52,6 +71,7 @@ export default class FitSVGText extends React.Component {
         const endOfLastWord = words[words.length - 1][1]
         const numberOfCharacters = endOfLastWord - startOfFirstWord
 
+        // based on the currently rendered element (but without the transform: scale)
         const width = this.textElement.getSubStringLength(
           startOfFirstWord,
           numberOfCharacters,
@@ -90,9 +110,13 @@ export default class FitSVGText extends React.Component {
     console.log({
       compositions,
       nextState,
+      state: this.state,
       containerHeight,
       containerWidth,
+      textElement: this.textElement,
     })
+
+    // takes all _n_ tspan'
     console.log(this.textElement.getComputedTextLength())
 
     this.setState(nextState)
