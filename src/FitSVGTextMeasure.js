@@ -4,7 +4,7 @@ import getCompositions from './compositions'
 import FitSVGText from './FitSVGText'
 
 export default class FitSVGTextMeasure extends React.Component {
-  textElement = null
+  textMeasurementElement = null
 
   state = {
     compositions: null,
@@ -24,7 +24,7 @@ export default class FitSVGTextMeasure extends React.Component {
     const { text } = this.props
 
     // get the height of the text
-    const height = this.textElement.getBBox().height
+    const height = this.textMeasurementElement.getBBox().height
 
     // find the indices where words are, e.g. "hi you" => [[0, 1], [3, 5]]
     const indices = this.findWordIndices(text)
@@ -38,7 +38,7 @@ export default class FitSVGTextMeasure extends React.Component {
         const endOfLastWord = words[words.length - 1][1]
         const numberOfCharacters = endOfLastWord - startOfFirstWord
 
-        const width = this.textElement.getSubStringLength(
+        const width = this.textMeasurementElement.getSubStringLength(
           startOfFirstWord,
           numberOfCharacters,
         )
@@ -109,7 +109,7 @@ export default class FitSVGTextMeasure extends React.Component {
       <Fragment>
         <text
           {...restProps}
-          ref={c => (this.textElement = c)}
+          ref={c => (this.textMeasurementElement = c)}
           visibility="hidden"
         >
           {text}
