@@ -1,5 +1,5 @@
 import React from 'react'
-import FitSVGText from './FitSVGText'
+import FitSVGTextMeasure from './FitSVGTextMeasure'
 
 const FitSVGTextRect = ({
   width,
@@ -11,16 +11,15 @@ const FitSVGTextRect = ({
   <svg width={width} height={height}>
     <g>
       <rect x="0" y="0" width={width} height={height} fill={backgroundColor} />
-      <FitSVGText
+      <FitSVGTextMeasure
         x="0"
         y="0"
         stroke={color}
         dy="1em"
         width={width}
         height={height}
-      >
-        {text}
-      </FitSVGText>
+        text={text}
+      />
     </g>
   </svg>
 )
