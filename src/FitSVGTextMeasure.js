@@ -107,7 +107,11 @@ export default class FitSVGTextMeasure extends React.Component {
 
     return (
       <Fragment>
-        <text {...restProps} ref={c => (this.textElement = c)} stroke="#f99">
+        <text
+          {...restProps}
+          ref={c => (this.textElement = c)}
+          visibility="hidden"
+        >
           {text}
         </text>
         {linesOfText && (
