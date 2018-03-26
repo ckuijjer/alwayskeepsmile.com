@@ -75,7 +75,6 @@ export default class FitSVGTextMeasure extends React.Component {
     let linesOfText = null
     let zoom = 1
 
-    console.log(this.state.compositions)
     if (this.state.compositions) {
       // calculate the linesOfText
       // todo: this should be immutable
@@ -94,7 +93,7 @@ export default class FitSVGTextMeasure extends React.Component {
       })
 
       this.state.compositions.sort((a, b) => b.maximumZoom - a.maximumZoom)
-      const best = this.state.compositions[0]
+      const best = this.state.compositions[0] || []
 
       linesOfText = best.map(words => {
         const startOfFirstWord = words[0][0]

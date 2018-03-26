@@ -1,7 +1,7 @@
 // Non performing implementation of https://en.wikipedia.org/wiki/Composition_(combinatorics)
 const compositions = list => {
   const bits = list.length - 1
-  const number_of_compositions = Math.pow(2, bits)
+  const number_of_compositions = Math.floor(Math.pow(2, bits))
 
   const compositions = new Array(number_of_compositions).fill(0).map((_, i) => {
     const composition = i
