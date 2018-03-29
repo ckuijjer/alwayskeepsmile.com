@@ -3,9 +3,7 @@ import { WindowSize } from 'react-fns'
 import FitSVGTextRect from './FitSVGTextRect'
 import ReactGA from 'react-ga'
 
-ReactGA.initialize('UA-116657207-1', {
-  debug: true,
-})
+ReactGA.initialize('UA-116657207-1')
 ReactGA.pageview('/')
 
 const App = () => (
