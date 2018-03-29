@@ -6,6 +6,7 @@ import ReactGA from 'react-ga'
 ReactGA.initialize('UA-116657207-1', {
   debug: true,
 })
+ReactGA.pageview('/')
 
 const App = () => (
   <WindowSize
