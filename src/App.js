@@ -1,32 +1,16 @@
 import React, { Component } from 'react'
 import { WindowSize } from 'react-fns'
 import FitSVGTextRect from './FitSVGTextRect'
+import ReactGA from 'react-ga'
 
-class App extends Component {
-  state = {
-    text: 'One two three',
-  }
+ReactGA.initialize('UA-116657207-1')
 
-  onChange = e => {
-    this.setState({ text: e.target.value || '' })
-  }
-
-  render() {
-    return (
-      <div>
-        <input value={this.state.text} onChange={this.onChange} />
-        <WindowSize
-          render={({ width, height }) => (
-            <FitSVGTextRect
-              width={width}
-              height={height}
-              text={this.state.text}
-            />
-          )}
-        />
-      </div>
-    )
-  }
-}
+const App = () => (
+  <WindowSize
+    render={({ width, height }) => (
+      <FitSVGTextRect width={width} height={height} text="Always keep smile" />
+    )}
+  />
+)
 
 export default App
